@@ -1,63 +1,73 @@
 import React, { useState } from 'react';
 import fakeData from '../../fakeData';
 import breakfast from '../../fakeData/breakfast';
-import Lunch from '../Lunch/Lunch';
+import FoodCart from '../FoodCart/FoodCart';
+import './Items.css'
+
 
 const Items = () => {
     // const foods = fakeData.slice(0, 18);
-    
-    
-    
-    const [dinner, setDinner] = useState([]);
-    const [breakFast, setBreakfast] = useState([]);
 
-    const [lunch, setLunch] = useState([]);
 
-    const handleLunchButton = (lunch) => {
-        console.log("clicked", lunch);
+    const lunch = fakeData.filter(
+        x => x.category === "lunch"
+    );
+    const [defaults, setDefault] = useState(lunch);
+
+
+    const [category, setCategory] = useState([]);
+
+    const handleLunchButton = (category) => {
+        console.log("clicked", category);
         const lunches = fakeData.filter(
             x => x.category === "lunch"
         );
-        setLunch(lunches);
+        setCategory(lunches);
     }
 
-    const handleDinnerButton = (dinner) => {
+    const handleDinnerButton = (category) => {
         console.log("clicked");
         const dinners = fakeData.filter(
             x => x.category === "dinner"
         );
-        setLunch(dinners);
+        setCategory(dinners);
     }
 
-    const handleBreakfastButton = (lunch) => {
-        console.log("clicked", lunch);
+    const handleBreakfastButton = (category) => {
+        console.log("clicked", category);
         const breakfasts = fakeData.filter(
             x => x.category === "breakfast"
         );
-        setLunch(breakfasts);
+        setCategory(breakfasts);
     }
-    return (
-        <div>
-            <h1>This is items</h1>
-            <p>{lunch.length}</p>
-            <p>{dinner.length}</p>
-            <p>{breakfast.length}</p>
-            <button onClick={() => handleLunchButton(lunch)}>Lunch</button>
-            <button onClick={() => handleDinnerButton(dinner)}>Dinner</button>
-            <button onClick={() => handleBreakfastButton(lunch)}>Breakfast</button>
 
-            {
-                lunch.map(lunch =>
-                <Lunch lunch={lunch}></Lunch>)
-            }
-            {/* {
-                dinner.map(dinner =>
-                <li>{dinner.name}</li>)
-            } */}
-            {/* {
-                breakfast.map(breakfast =>
-                <li>{breakfast.name}</li>)
-            } */}
+
+    return (
+        <div className="item-body">
+
+            
+            <button onClick={() => handleBreakfastButton(category)}>Breakfast</button>
+            <button onClick={() => handleLunchButton(category)}>Lunch</button>
+            <button onClick={() => handleDinnerButton(category)}>Dinner</button>
+            <div className="hover-row row">
+                {
+                    defaults.map(food =>
+                        <div className="cart-style col-md-4">
+                            <FoodCart food={food}></FoodCart>
+                        </div>
+                    )
+                }
+            </div>
+            <div className="hover-row row">
+                {
+                    category.map(food =>
+                        <div className="cart-style col-md-4">
+                            <FoodCart food={food}></FoodCart>
+                        </div>
+                    )
+                }
+            </div>
+
 
         </div>
     );
