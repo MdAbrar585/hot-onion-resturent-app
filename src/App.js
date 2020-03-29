@@ -11,6 +11,7 @@ import {
 import ItemReview from './Component/ItemReview/ItemReview';
 import Error from './Error/Error';
 import ShowItemsCartReview from './Component/ShowItemsCartReview/ShowItemsCartReview';
+import Delivery from './Component/Delivery/Delivery';
 function App() {
   return (
     <div>
@@ -36,6 +37,9 @@ function App() {
           </Route>
           <Route path="/showItemsCart">
             <ShowItemsCartReview></ShowItemsCartReview>
+          </Route>
+          <Route path="/delivery">
+            <Delivery></Delivery>
           </Route>
           <Route path="/menuItems/:id">
             <ItemReview></ItemReview>

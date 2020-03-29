@@ -14,8 +14,7 @@ const Header = () => {
                     <a href="/"><img src={logo} alt="" /></a>
                 </div>
                 <div className="icons d-flex justify-content-end">
-                    <p><FontAwesomeIcon icon={faShoppingCart} />
-                    </p>
+                    <p><FontAwesomeIcon icon={faShoppingCart} /></p>
                     {/* <a href="/">Login</a>
                     <a href="/">Sign Up</a> */}
                     <button className="btn btn-info">Login</button>

@@ -4,6 +4,7 @@ import fakeData from '../../fakeData';
 import ItemsCart from '../ItemsCart/ItemsCart';
 import FoodCart from '../FoodCart/FoodCart';
 import './ShowItemsCartReview.css'
+import { Link } from 'react-router-dom';
 const ShowItemsCartReview = () => {
     const [foodCart, setFoodCart] = useState([]);
 
@@ -41,6 +42,10 @@ const ShowItemsCartReview = () => {
     const tax = (total / 10).toFixed(2);
     const grandTotal = (total + shippingCost + Number(tax)).toFixed(2) + delivery;
 
+
+    const handlePlaceOrder = () =>{
+        console.log("clicked");
+    }
     return (
         <div>
             <nav className="d-flex justify-content-center menu-list">
@@ -61,7 +66,13 @@ const ShowItemsCartReview = () => {
                 <p> Tax : {tax}</p>
                 <p>Delivery Fee : {delivery}</p>
                 <p>Total : {grandTotal}</p>
-                <button style={{backgroundColor:"#F91944",border:"none"}} className="btn-place-order btn btn-primary">Place Order</button>
+                <Link to="/delivery">
+                <button 
+                style={{backgroundColor:"#F91944",border:"none"}} 
+                className="btn-place-order btn btn-primary"
+                onClick={handlePlaceOrder}
+                >Place Order</button>
+                </Link>
             </div>
 
         </div>
