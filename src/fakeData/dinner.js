@@ -1,6 +1,6 @@
 var dinner = [
     {
-        "id": "1",
+        "id": "13",
         "name": "Baked Chicken",
         "category": "dinner",
         "img": "https://i.postimg.cc/NFNrXcDd/dinner1.png",
@@ -8,7 +8,7 @@ var dinner = [
         "price": 9.99
     },
     {
-        "id": "2",
+        "id": "14",
         "name": "Lemoni Selmon Piccata",
         "category": "dinner",
         "img": "https://i.postimg.cc/kGVxN0Pc/dinner2.png",
@@ -16,7 +16,7 @@ var dinner = [
         "price": 10.99
     },
     {
-        "id": "3",
+        "id": "15",
         "name": "Garlic Butter Baked Salmons",
         "category": "dinner",
         "img": "https://i.postimg.cc/vmBkFmrH/dinner3.png",
@@ -24,7 +24,7 @@ var dinner = [
         "price": 6.99
     },
     {
-        "id": "4",
+        "id": "16",
         "name": "French Fire With Cheese",
         "category": "dinner",
         "img": "https://i.postimg.cc/gJyvgVxw/dinner4.png",
@@ -32,7 +32,7 @@ var dinner = [
         "price": 8.99
     },
     {
-        "id": "5",
+        "id": "17",
         "name": "Pork Tendiro",
         "category": "dinner",
         "img": "https://i.postimg.cc/FFDS1s3Q/dinner5.png",
@@ -40,7 +40,7 @@ var dinner = [
         "price": 12.99
     },
     {
-        "id": "6",
+        "id": "18",
         "name": "Salmon with Grapefruit and Green salad",
         "category": "dinner",
         "img": "https://i.postimg.cc/qM670kGw/dinner6.png",

@@ -45,11 +45,15 @@ const Items = () => {
     return (
         <div className="item-body">
 
-            
-            <button onClick={() => handleBreakfastButton(category)}>Breakfast</button>
-            <button onClick={() => handleLunchButton(category)}>Lunch</button>
-            <button onClick={() => handleDinnerButton(category)}>Dinner</button>
-            <div className="hover-row row">
+
+            <div className="d-flex justify-content-center food-menu">
+                {/* <button onClick={() => handleBreakfastButton(category)}>Breakfast</button> */}
+                <span onClick={true ? () => handleBreakfastButton(category):() => handleLunchButton(category) }>Breakfast</span>
+                <span onClick={ () => handleLunchButton(category) }>Lunch</span>
+                <span onClick={true ? () => handleDinnerButton(category):  () => handleLunchButton(category) }>Dinner</span>
+            </div>
+
+            {/* <div className="hover-row row">
                 {
                     defaults.map(food =>
                         <div className="cart-style col-md-4">
@@ -57,7 +61,7 @@ const Items = () => {
                         </div>
                     )
                 }
-            </div>
+            </div> */}
             <div className="hover-row row">
                 {
                     category.map(food =>

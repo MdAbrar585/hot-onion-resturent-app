@@ -26,6 +26,11 @@ const Header = () => {
             <div className="banner">
                     <img src={banner} alt=""/>
             </div>
+            {/* <nav>
+                <a href="/breakfast">Breakfast</a>
+                <a href="/lunch">Lunch</a>
+                <a href="/dinner">Dinner</a>
+            </nav> */}
         </div>
     );
 };

@@ -1,0 +1,15 @@
+.order-food-review{
+    border: 1px solid black;
+    width: 45%;
+    padding: 10px;
+    border-radius: 15px;
+    margin-left: 10px;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #F91944;
+    border-color: #F91944;
+    width: 97%;
+    margin-left: 1px;
+}
