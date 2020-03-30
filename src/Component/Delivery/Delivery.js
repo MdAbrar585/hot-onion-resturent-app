@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './Delivery.css'
 import image3 from '../../images/Image/Group 1152.png'
 import image2 from '../../images/Image/Group 1151.png'
 import image1 from '../../images/Image/ordercomplete.png'
+import { UserContext } from '../../App';
 const Delivery = () => {
+    const user = useContext(UserContext);
     return (
         <div>
             <nav className="d-flex justify-content-center menu-list">
@@ -34,7 +36,8 @@ const Delivery = () => {
                             <img src={image3} alt="" />
                         </div>
                         <div className="driver-name">
-                            <h4 >Piash</h4>
+                            <h4 >{user}</h4>
+                            <p className="text-muted">Your Rider</p>
                         </div>
                     </div>
 

@@ -6,7 +6,7 @@ const FoodCart = (props) => {
     const { id, name, description, img, price } = props.food;
     return (
 
-        <Link to={"/menuItems/"+id}>
+        <Link style={{textDecoration:"none",color:"black"}} to={"/menuItems/"+id}>
             <div className="my-card">
                 <div className="row">
                     <div className="card-img-top">

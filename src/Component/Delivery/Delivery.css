@@ -39,7 +39,7 @@ padding: 50px;
     width: 90%;
     margin-left: 10px;
 }
-.driver-name h4{
+.driver-name h4,p{
     margin-left: 20px;
     margin-top: 10px;
 }
