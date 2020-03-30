@@ -1,11 +1,13 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import './Delivery.css'
 import image3 from '../../images/Image/Group 1152.png'
 import image2 from '../../images/Image/Group 1151.png'
 import image1 from '../../images/Image/ordercomplete.png'
-import { UserContext } from '../../App';
+import { useAuth } from '../Login/useAuth';
+
 const Delivery = () => {
-    const user = useContext(UserContext);
+    const auth = useAuth();
+    console.log(auth.user);
     return (
         <div>
             <nav className="d-flex justify-content-center menu-list">
@@ -36,7 +38,7 @@ const Delivery = () => {
                             <img src={image3} alt="" />
                         </div>
                         <div className="driver-name">
-                            <h4 >{user}</h4>
+                            <h4 >{auth.user ? auth.user.name : <small>No user are Logged In</small>} </h4>
                             <p className="text-muted">Your Rider</p>
                         </div>
                     </div>

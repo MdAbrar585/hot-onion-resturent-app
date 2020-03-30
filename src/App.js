@@ -14,13 +14,14 @@ import ItemReview from './Component/ItemReview/ItemReview';
 import Error from './Error/Error';
 import ShowItemsCartReview from './Component/ShowItemsCartReview/ShowItemsCartReview';
 import Delivery from './Component/Delivery/Delivery';
+import { AuthContextProvider } from './Component/Login/useAuth';
 
-export const UserContext = createContext();
+
 
 function App() {
   return (
     <div>
-      <UserContext.Provider value="Abrar">
+      <AuthContextProvider>
 
         {/* <Header></Header> */}
         <Router>
@@ -32,12 +33,15 @@ function App() {
             {/* <Route path="/itemReview">
           </Route> */}
             <Route path="/breakfast">
+              <Header></Header>
               <Items></Items>
             </Route>
             <Route path="/lunch">
+              <Header></Header>
               <Items></Items>
             </Route>
             <Route path="/dinner">
+              <Header></Header>
               <Items></Items>
             </Route>
             <Route exact path="/">
@@ -56,6 +60,7 @@ function App() {
               <Login></Login>
             </Route>
             <Route path="/menuItems/:id">
+              <Header></Header>
               <ItemReview></ItemReview>
             </Route>
             <Route path="*">
@@ -63,7 +68,7 @@ function App() {
             </Route>
           </Switch>
         </Router>
-      </UserContext.Provider>
+      </AuthContextProvider>
     </div>
   );
 }

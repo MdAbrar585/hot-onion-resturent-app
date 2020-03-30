@@ -1,11 +1,26 @@
+import React, { useContext, useEffect } from 'react';
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import firebaseConfig from "../../firebase.config";
-import { useState } from "react";
+import { useState, createContext } from "react";
 
 //*****************/ Fire base Initialization ************************
 firebase.initializeApp(firebaseConfig);
 
+const AuthContext = createContext();
+
+export const AuthContextProvider = (props) => {
+    const auth = Auth();
+    return <AuthContext.Provider value={auth}>{props.children}</AuthContext.Provider>
+}
+
+export const useAuth = () => useContext(AuthContext);
+
+//*** Created Function******************* */
+const getUser = user => {
+    const { email, displayName, photoURL } = user;
+   return { email, name: displayName, photo: photoURL };
+}
 
 const Auth = () => {
     const [user, setUser] = useState(null) //for save user information 
@@ -15,8 +30,7 @@ const Auth = () => {
         //*****************/ sign in with popup Start ************************
         firebase.auth().signInWithPopup(provider)
             .then(res => {
-                const { email, displayName, photoURL } = res.user;
-                const signedInUser = { email, name: displayName, photo: photoURL };
+                const signedInUser = getUser(res.user);
                 setUser(signedInUser);
                 return res.user;
             })
@@ -39,7 +53,17 @@ const Auth = () => {
             });
     }
     //*****************/ sign Out  End ************************
-
+    //************ */
+    useEffect(() => {
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                const currentUser = getUser(user);
+                setUser(currentUser);
+            } else {
+                // No user is signed in.
+            }
+        });
+    }, [])
 
     return {
         user,
