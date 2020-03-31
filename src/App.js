@@ -14,7 +14,7 @@ import ItemReview from './Component/ItemReview/ItemReview';
 import Error from './Error/Error';
 import ShowItemsCartReview from './Component/ShowItemsCartReview/ShowItemsCartReview';
 import Delivery from './Component/Delivery/Delivery';
-import { AuthContextProvider } from './Component/Login/useAuth';
+import { AuthContextProvider, PrivateRoute } from './Component/Login/useAuth';
 
 
 
@@ -48,10 +48,13 @@ function App() {
               <Header></Header>
               <Items></Items>
             </Route>
-            <Route path="/showItemsCart">
+            <Route path="/showItemsCarts">
+                <ShowItemsCartReview></ShowItemsCartReview>
+            </Route>
+            <PrivateRoute path="/showItemsCart">
               <Header></Header>
               <ShowItemsCartReview></ShowItemsCartReview>
-            </Route>
+            </PrivateRoute>
             <Route path="/delivery">
               <Header></Header>
               <Delivery></Delivery>

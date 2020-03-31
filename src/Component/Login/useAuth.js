@@ -3,9 +3,12 @@ import * as firebase from "firebase/app";
 import "firebase/auth";
 import firebaseConfig from "../../firebase.config";
 import { useState, createContext } from "react";
+import { Route,Redirect } from "react-router-dom";
 
 //*****************/ Fire base Initialization ************************
 firebase.initializeApp(firebaseConfig);
+//*****************/ Fire base Initialization end ************************
+
 
 const AuthContext = createContext();
 
@@ -15,6 +18,31 @@ export const AuthContextProvider = (props) => {
 }
 
 export const useAuth = () => useContext(AuthContext);
+
+//*****************/ Redirect review item to login ************************
+export const PrivateRoute = ({ children, ...rest }) => {
+    const auth = useAuth();
+    return (
+      <Route
+        {...rest}
+        render={({ location }) =>
+          auth.user ? (
+            children
+          ) : (
+            <Redirect
+              to={{
+                pathname: "/login",
+                state: { from: location }
+              }}
+            />
+          )
+        }
+      />
+    );
+  }
+//*****************/ Redirect review item to login end ************************
+
+
 
 //*** Created Function******************* */
 const getUser = user => {
@@ -28,7 +56,7 @@ const Auth = () => {
 
     const signInWithGoogle = () => {
         //*****************/ sign in with popup Start ************************
-        firebase.auth().signInWithPopup(provider)
+        return firebase.auth().signInWithPopup(provider)
             .then(res => {
                 const signedInUser = getUser(res.user);
                 setUser(signedInUser);

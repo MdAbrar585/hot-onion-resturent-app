@@ -61,6 +61,9 @@ const ShowItemsCartReview = () => {
                             foodItem={fd} ></ItemsCart>
                     )
                 }
+                {
+                    !foodCart.length && <h1>No Items Added <a href="/items"> Keep Shopping</a></h1>
+                }
                 <p>Subtotal : {total}</p>
                 <p>Shipping Cost : {shippingCost}</p>
                 <p> Tax : {tax}</p>

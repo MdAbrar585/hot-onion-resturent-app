@@ -22,9 +22,12 @@ const Header = () => {
                     {/* <a href="/">Login</a>
                     <a href="/">Sign Up</a> */}
                     {
-                        auth.user ?  <span>{auth.user.name}</span> :
-                        <a href="/login">Login</a>
+                        auth.user && <span>Welcome <br/> {auth.user.name}</span> 
+                       
                         // <button className="btn btn-info">Login</button>
+                    }
+                    {
+                        auth.user ? <button onClick={auth.signOut}>SignOut</button> : <a href="/login">Login</a>
                     }
                     <button className="btn btn-info">Sign Up</button>
 
