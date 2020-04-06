@@ -5,6 +5,7 @@ import ItemsCart from '../ItemsCart/ItemsCart';
 import FoodCart from '../FoodCart/FoodCart';
 import './ShowItemsCartReview.css'
 import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 const ShowItemsCartReview = () => {
     const [foodCart, setFoodCart] = useState([]);
 
@@ -43,9 +44,17 @@ const ShowItemsCartReview = () => {
     const grandTotal = (total + shippingCost + Number(tax)).toFixed(2) + delivery;
 
 
-    const handlePlaceOrder = () =>{
+    const handlePlaceOrder = () => {
         console.log("clicked");
     }
+
+    //**************************************************** */
+    const { register, handleSubmit, watch, errors } = useForm();
+    const onSubmit = data => { console.log(data) }
+
+    console.log(watch('example')) // watch input value by passing the name of it
+    //**************************************************** */
+
     return (
         <div>
             <nav className="d-flex justify-content-center menu-list">
@@ -53,30 +62,58 @@ const ShowItemsCartReview = () => {
                 <a href="/lunch">Lunch</a>
                 <a href="/dinner">Dinner</a>
             </nav>
-            <div className="order-food-review">
-                {
-                    foodCart.map(fd =>
-                        <ItemsCart
-                            handleRemoveItem={handleRemoveItem}
-                            foodItem={fd} ></ItemsCart>
-                    )
-                }
-                {
-                    !foodCart.length && <h1>No Items Added <a href="/items"> Keep Shopping</a></h1>
-                }
-                <p>Subtotal : {total}</p>
-                <p>Shipping Cost : {shippingCost}</p>
-                <p> Tax : {tax}</p>
-                <p>Delivery Fee : {delivery}</p>
-                <p>Total : {grandTotal}</p>
-                <Link to="/delivery">
-                <button 
-                style={{backgroundColor:"#F91944",border:"none"}} 
-                className="btn-place-order btn btn-primary"
-                onClick={handlePlaceOrder}
-                >Place Order</button>
-                </Link>
+            <div className="items-cart-body">
+                <div className="form">
+                    <div className="form-body">
+                        <h6>Edit Delivery Details</h6><hr className="hr"/>
+                        < form onSubmit={handleSubmit(onSubmit)} >
+                            < input defaultValue="Delivery to door" name="deliveryDoor" ref={register({ required: true })} />
+                            {errors.deliveryDoor && <span>This field is required</span>}
+
+                            < input defaultValue="107 Rd No 8" name="roadNo" ref={register({ required: true })}/>
+                            {errors.roadNo && <span>This field is required</span>}
+
+                            < input name="flat" ref={register({ required: true })}  placeholder="Flat,suit amd floor"/>
+                            {errors.flat && <span className="err">This field is required</span>}
+
+                            < input name="businessName" ref={register({ required: true })} placeholder="Business Name"/>
+                            {errors.businessName && <span className="err">This field is required</span>}
+
+                            < input name="deliveryInstruction" ref={register({ required: true })} placeholder="Add Delivery Instruction"/>
+                            {errors.deliveryInstruction && <span className="err">This field is required</span>} <br/>
+
+                            {/* <input type="submit" /> */}
+                            <button className="details-btn" onClick={onSubmit}>Submit</button>
+                        </form >
+                    </div>
+
+                </div>
+                <div className="order-food-review">
+                    {
+                        foodCart.map(fd =>
+                            <ItemsCart
+                                handleRemoveItem={handleRemoveItem}
+                                foodItem={fd} ></ItemsCart>
+                        )
+                    }
+                    {
+                        !foodCart.length && <h1>No Items Added <a href="/items"> Keep Shopping</a></h1>
+                    }
+                    <p>Subtotal : {total}</p>
+                    <p>Shipping Cost : {shippingCost}</p>
+                    <p> Tax : {tax}</p>
+                    <p>Delivery Fee : {delivery}</p>
+                    <p>Total : {grandTotal}</p>
+                    <Link to="/delivery">
+                        <button
+                            style={{ backgroundColor: "#F91944", border: "none" }}
+                            className="btn-place-order btn btn-primary"
+                            onClick={handlePlaceOrder}
+                        >Place Order</button>
+                    </Link>
+                </div>
             </div>
+
 
         </div>
     );

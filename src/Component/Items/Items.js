@@ -48,9 +48,9 @@ const Items = () => {
 
             <div className="d-flex justify-content-center food-menu">
                 {/* <button onClick={() => handleBreakfastButton(category)}>Breakfast</button> */}
-                <span onClick={true ? () => handleBreakfastButton(category):() => handleLunchButton(category) }>Breakfast</span>
+                <span onClick={() => handleBreakfastButton(category) }>Breakfast</span>
                 <span onClick={ () => handleLunchButton(category) }>Lunch</span>
-                <span onClick={true ? () => handleDinnerButton(category):  () => handleLunchButton(category) }>Dinner</span>
+                <span onClick={() => handleDinnerButton(category) }>Dinner</span>
             </div>
 
             {/* <div className="hover-row row">
