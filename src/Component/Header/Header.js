@@ -22,7 +22,7 @@ const Header = () => {
                     {/* <a href="/">Login</a>
                     <a href="/">Sign Up</a> */}
                     {
-                        auth.user && <span>Welcome <br/> {auth.user.name}</span> 
+                        auth.user && <span>Welcome <br/> {auth.user.email}</span> 
                        
                         // <button className="btn btn-info">Login</button>
                     }

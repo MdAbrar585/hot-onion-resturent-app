@@ -15,10 +15,7 @@ const Login = () => {
     console.log(auth);
 
     //*************************************************** */
-    const { register, handleSubmit, watch, errors } = useForm();
-
-    //***********************edition Start**************************** */
-
+    const { register, handleSubmit, watch, errors } = useForm(); 
     const onSubmit = data => { console.log(data) }
 
     console.log(watch('example')) // watch input value by passing the name of it
@@ -32,18 +29,18 @@ const Login = () => {
                     <img src={logo} alt="" />
                 </div>
                 <div className="login-form-body">
-                    < form onSubmit={handleSubmit(onSubmit)} >
+                    < form  onSubmit={auth.createAccount}>
 
-                        < input name="name" ref={register({ required: true })} placeholder="Name" />
+                        < input onBlur={auth.handleChange} name="name" ref={register({ required: true })} placeholder="Name" />
                         {errors.name && <span className="error">This field is required</span>}
-                        < input name="email" ref={register({ required: true })} placeholder="Email" />
+                        < input onBlur={auth.handleChange} name="email" ref={register({ required: true })} placeholder="Email" />
                         {errors.email && <span className="error">This field is required</span>}
                         {/* < input name="password" ref={register({ required: true })} placeholder="Password" />
                         {errors.password && <span className="error">This field is required</span>}
                         < input name="confirmPassword" ref={register({ required: true })} placeholder="Confirm Password"/>
                         {errors.confirmPassword && <span className="error">This field is required</span>} <br/> */}
 
-                        <input
+                        <input onBlur={auth.handleChange}
                             name="password"
                             type="password"
                             ref={register({
@@ -67,8 +64,9 @@ const Login = () => {
                         />
                         {errors.password_repeat && <p>{errors.password_repeat.message}</p>}
 
-                        <button className="login-btn" onClick={onSubmit}>Login</button>
-                        {/* <input type="submit" /> */}
+                        {/* <button className="login-btn" onClick={onSubmit}>Login</button> */}
+                        <input type="submit" value="Login" />
+                        <p><a href="/loginAccount">Already</a></p>
                     </form >
                 </div>
 

@@ -15,6 +15,7 @@ import Error from './Error/Error';
 import ShowItemsCartReview from './Component/ShowItemsCartReview/ShowItemsCartReview';
 import Delivery from './Component/Delivery/Delivery';
 import { AuthContextProvider, PrivateRoute } from './Component/Login/useAuth';
+import LoginAccount from './Component/LoginAccount/LoginAccount';
 
 
 
@@ -61,6 +62,9 @@ function App() {
             </Route>
             <Route path="/login">
               <Login></Login>
+            </Route>
+            <Route path="/loginAccount">
+              <LoginAccount></LoginAccount>
             </Route>
             <Route path="/menuItems/:id">
               <Header></Header>
