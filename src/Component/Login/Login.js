@@ -15,7 +15,7 @@ const Login = () => {
     console.log(auth);
 
     //*************************************************** */
-    const { register, handleSubmit, watch, errors } = useForm(); 
+    const { register, handleSubmit, watch, errors } = useForm();
     const onSubmit = data => { console.log(data) }
 
     console.log(watch('example')) // watch input value by passing the name of it
@@ -29,7 +29,7 @@ const Login = () => {
                     <img src={logo} alt="" />
                 </div>
                 <div className="login-form-body">
-                    < form  onSubmit={auth.createAccount}>
+                    < form onSubmit={auth.createAccount}>
 
                         < input onBlur={auth.handleChange} name="name" ref={register({ required: true })} placeholder="Name" />
                         {errors.name && <span className="error">This field is required</span>}
@@ -43,6 +43,7 @@ const Login = () => {
                         <input onBlur={auth.handleChange}
                             name="password"
                             type="password"
+                            placeholder="password"
                             ref={register({
                                 required: "You must specify a password",
                                 minLength: {
@@ -57,6 +58,7 @@ const Login = () => {
                         <input
                             name="password_repeat"
                             type="password"
+                            placeholder="confirm password"
                             ref={register({
                                 validate: value =>
                                     value === password.current || "The passwords do not match"
@@ -66,7 +68,6 @@ const Login = () => {
 
                         {/* <button className="login-btn" onClick={onSubmit}>Login</button> */}
                         <input type="submit" value="Login" />
-                        <p><a href="/loginAccount">Already</a></p>
                     </form >
                 </div>
 
@@ -74,6 +75,7 @@ const Login = () => {
                     auth.user ? <button className="google-login-btn" onClick={auth.signOut}>Sign Out</button> :
                         <button className="google-login-btn" onClick={handleLogin}>Sign In Google</button>
                 }
+                <p style={{ marginRight: "150px" }}><a href="/loginAccount">Already have an account?</a></p>
 
             </div>
 

@@ -46,8 +46,8 @@ export const PrivateRoute = ({ children, ...rest }) => {
 
 //*** Created Function******************* */
 const getUser = user => {
-    const { email, displayName, photoURL } = user;
-   return { email, name: displayName, photo: photoURL };
+    const { email, displayName, password } = user;
+   return { email, name: displayName, password: password };
 }
 
 //*************Editing Start****************/
@@ -70,7 +70,7 @@ const Auth = () => {
     isSignedIn: false,
     name: '',
     email:'',
-    photo: ''
+    password: ''
   })
     const provider = new firebase.auth.GoogleAuthProvider();
 
@@ -88,15 +88,15 @@ const Auth = () => {
         //*****************/ sign in with popup Start ************************
         return firebase.auth().signInWithPopup(provider)
         .then(res => {
-          const { displayName, photoURL, email } = res.user;
+          const { displayName, password, email } = res.user;
           const signedInUser = {
             isSignedIn: true,
             name: displayName,
             email: email,
-            photo: photoURL
+            password: password
           }
           setUser(signedInUser);
-          console.log(displayName, photoURL, email);
+          console.log(displayName, password, email);
         })
         .catch(err => {
           console.log(err);
@@ -109,15 +109,15 @@ const Auth = () => {
       // if (user.isValid) {
         firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
         .then(res => {
-          const { displayName, photoURL, email } = res.user;
-          const signedInUser = {
+          const { displayName, password, email } = res.user;
+          const createdUser = {
             isSignedIn: true,
-            name: displayName,
+            name: user.name,
             email: email,
-            photo: photoURL
+            photo: password
           }
-          setUser(signedInUser);
-          console.log(displayName, photoURL, email);
+          setUser(createdUser);
+          console.log(displayName, password, email);
         })
         .catch(err => {
           console.log(err);
@@ -133,15 +133,15 @@ const Auth = () => {
       // if (user.isValid) {
         firebase.auth().signInWithEmailAndPassword(user.email, user.password)
          .then(res => {
-          const { displayName, photoURL, email } = res.user;
+          const { displayName, password, email } = res.user;
           const signedInUser = {
             isSignedIn: true,
             name: displayName,
             email: email,
-            photo: photoURL
+            password: password
           }
           setUser(signedInUser);
-          console.log(displayName, photoURL, email);
+          console.log(displayName, password, email);
         })
         .catch(err => {
           console.log(err);
