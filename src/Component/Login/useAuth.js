@@ -110,13 +110,13 @@ const Auth = () => {
         firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
         .then(res => {
           const { displayName, password, email } = res.user;
-          const createdUser = {
+          const signedInUser = {
             isSignedIn: true,
             name: user.name,
             email: email,
             photo: password
           }
-          setUser(createdUser);
+          setUser(signedInUser);
           console.log(displayName, password, email);
         })
         .catch(err => {

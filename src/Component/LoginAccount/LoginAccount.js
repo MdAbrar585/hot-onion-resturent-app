@@ -1,10 +1,11 @@
 import React from 'react';
-import { useAuth } from '../Login/useAuth';
+
 import { useForm } from 'react-hook-form';
 import './LoginAccount.css';
+import Auth from '../Login/useAuth';
 
 const LoginAccount = () => {
-    const auth = useAuth();
+    const auth = Auth();
     const { register, handleSubmit, watch, errors } = useForm();
 
     const handleLogin = () => {

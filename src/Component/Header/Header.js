@@ -14,22 +14,29 @@ const Header = () => {
     return (
         <div>
             <nav className="nav-body">
-                <div>
+                <div className="logo">
                     <a href="/"><img src={logo} alt="" /></a>
                 </div>
-                <div className="icons d-flex justify-content-end">
-                    <p><FontAwesomeIcon icon={faShoppingCart} /></p>
-                    {/* <a href="/">Login</a>
-                    <a href="/">Sign Up</a> */}
-                    {
-                        auth.user && <span>Welcome <br/> {auth.user.email}</span> 
+                <div className="p-root d-flex flex-row">
+                   <div className="p-2">
+                   <p className="cart-icon"><FontAwesomeIcon icon={faShoppingCart} /></p>
+                   </div>
+                   <div className="p-2">
+                   {
+                        auth.user && <span>Welcome <br/> {auth.user.name}</span> 
                        
                         // <button className="btn btn-info">Login</button>
                     }
-                    {
-                        auth.user ? <button onClick={auth.signOut}>SignOut</button> : <a href="/login">Login</a>
+                   </div>
+                   <div className="p-2">
+                   {
+                        auth.user ? <button className="my-button" onClick={auth.signOut}>SignOut</button> : <a  className="my-button" href="/login">Login</a>
+                        
                     }
-                    <button className="btn btn-info">Sign Up</button>
+                    <button className="my-button">SignUp</button>
+                       </div>
+                    {/* <a href="/">Login</a>
+                    <a href="/">Sign Up</a> */}
 
                 </div>
             </nav>

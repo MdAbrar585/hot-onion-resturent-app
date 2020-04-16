@@ -4,6 +4,7 @@ const ItemsCart = (props) => {
 
     // console.log(props.foodItem.name);
     const { id,name, img, quantity, price } = props.foodItem;
+    console.log(props.foodItem.length);
 
 
     return (

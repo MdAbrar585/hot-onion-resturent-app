@@ -1,0 +1,17 @@
+.a-image{
+    width: 100%;
+
+}
+.about-delivery{
+    display: flex;
+    margin-top: 10px;
+}
+.about-delivery p{
+    font-size: 10px;
+}
+.logo-about{
+    width: 150px;
+}
+.text p{
+    margin:1px;
+}

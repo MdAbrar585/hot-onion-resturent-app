@@ -16,6 +16,8 @@ import ShowItemsCartReview from './Component/ShowItemsCartReview/ShowItemsCartRe
 import Delivery from './Component/Delivery/Delivery';
 import { AuthContextProvider, PrivateRoute } from './Component/Login/useAuth';
 import LoginAccount from './Component/LoginAccount/LoginAccount';
+import About from './Component/About/About';
+import Footer from './Component/Footer/Footer';
 
 
 
@@ -30,35 +32,47 @@ function App() {
             <Route path="/items">
               <Header></Header>
               <Items></Items>
+              <About></About>
+              <Footer></Footer>
             </Route>
             {/* <Route path="/itemReview">
           </Route> */}
             <Route path="/breakfast">
               <Header></Header>
               <Items></Items>
+              <About></About>
+              <Footer></Footer>
             </Route>
             <Route path="/lunch">
               <Header></Header>
               <Items></Items>
+              <About></About>
+              <Footer></Footer>
             </Route>
             <Route path="/dinner">
               <Header></Header>
               <Items></Items>
+              <About></About>
             </Route>
             <Route exact path="/">
               <Header></Header>
               <Items></Items>
+              <About></About>
+              <Footer></Footer>
             </Route>
             <Route path="/showItemsCarts">
                 <ShowItemsCartReview></ShowItemsCartReview>
+              <Footer></Footer>
             </Route>
             <PrivateRoute path="/showItemsCart">
               <Header></Header>
               <ShowItemsCartReview></ShowItemsCartReview>
+              <Footer></Footer>
             </PrivateRoute>
             <Route path="/delivery">
               <Header></Header>
               <Delivery></Delivery>
+              <Footer></Footer>
             </Route>
             <Route path="/login">
               <Login></Login>
@@ -69,7 +83,9 @@ function App() {
             <Route path="/menuItems/:id">
               <Header></Header>
               <ItemReview></ItemReview>
+              <Footer></Footer>
             </Route>
+            
             <Route path="*">
               <Error></Error>
             </Route>

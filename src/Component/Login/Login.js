@@ -12,6 +12,11 @@ const Login = () => {
                 window.location.pathname = '/showItemsCarts';
             })
     }
+    const handleLogOut = () => {
+        auth.signOut()
+            
+    }
+
     console.log(auth);
 
     //*************************************************** */
@@ -67,15 +72,15 @@ const Login = () => {
                         {errors.password_repeat && <p>{errors.password_repeat.message}</p>}
 
                         {/* <button className="login-btn" onClick={onSubmit}>Login</button> */}
-                        <input type="submit" value="Login" />
+                        <input className="google-login-btn" type="submit" value="SignUp" />
                     </form >
                 </div>
 
                 {
-                    auth.user ? <button className="google-login-btn" onClick={auth.signOut}>Sign Out</button> :
-                        <button className="google-login-btn" onClick={handleLogin}>Sign In Google</button>
+                    auth.user ? <button className="google-login-btn" onClick={handleLogin}>Sign In Google</button> : <button className="google-login-btn" onClick={handleLogOut}>Sign Out</button> 
+                        
                 }
-                <p style={{ marginRight: "150px" }}><a href="/loginAccount">Already have an account?</a></p>
+                <p style={{ marginRight: "90px" }}><a href="/loginAccount">Already have an account?</a></p>
 
             </div>
 

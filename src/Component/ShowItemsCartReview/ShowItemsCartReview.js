@@ -8,7 +8,36 @@ import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 const ShowItemsCartReview = () => {
     const [foodCart, setFoodCart] = useState([]);
+    const [address, setAddress] = useState({
+        flat: "",
+        business: "",
+        delivery: "",
+        disabled: true
+    });
+    // const handleFlatChange = (evt) => {
+    //     setAddress({ flat: evt.target.value });
+    // }
 
+    // const handleBusinessChange = (evt) => {
+    //     setAddress({ business: evt.target.value });
+    // }
+    // const handleDeliveryChange = (evt) => {
+    //     setAddress({ delivery: evt.target.value });
+    // }
+
+    const handleChange = event => {
+        // console.log(event.target.name,event.target.value);
+        const newUserInfo = {
+            ...address,
+            disabled: false
+        };
+        newUserInfo[event.target.name] = event.target.value;
+        console.log(newUserInfo);
+        // setUser(newUserInfo);
+        setAddress(newUserInfo);
+    }
+
+    // console.log(foodCart.length);
     const handleRemoveItem = (itemsId) => {
         const newFoodItem = foodCart.filter(fdId => fdId.id !== itemsId);
         setFoodCart(newFoodItem);
@@ -55,6 +84,7 @@ const ShowItemsCartReview = () => {
     console.log(watch('example')) // watch input value by passing the name of it
     //**************************************************** */
 
+    // const enable = address.business.length>0 && address.delivery.length>0;
     return (
         <div>
             <nav className="d-flex justify-content-center menu-list">
@@ -65,25 +95,25 @@ const ShowItemsCartReview = () => {
             <div className="items-cart-body">
                 <div className="form">
                     <div className="form-body">
-                        <h6>Edit Delivery Details</h6><hr className="hr"/>
+                        <h6>Edit Delivery Details</h6><hr className="hr" />
                         < form onSubmit={handleSubmit(onSubmit)} >
                             < input defaultValue="Delivery to door" name="deliveryDoor" ref={register({ required: true })} />
                             {errors.deliveryDoor && <span>This field is required</span>}
 
-                            < input defaultValue="107 Rd No 8" name="roadNo" ref={register({ required: true })}/>
+                            < input defaultValue="107 Rd No 8" name="roadNo" ref={register({ required: true })} />
                             {errors.roadNo && <span>This field is required</span>}
 
-                            < input name="flat" ref={register({ required: true })}  placeholder="Flat,suit amd floor"/>
+                            < input name="flat" onBlur={handleChange} ref={register({ required: true })} placeholder="Flat,suit amd floor" />
                             {errors.flat && <span className="err">This field is required</span>}
 
-                            < input name="businessName" ref={register({ required: true })} placeholder="Business Name"/>
+                            < input name="businessName" onBlur={handleChange} ref={register({ required: true })} placeholder="Business Name" />
                             {errors.businessName && <span className="err">This field is required</span>}
 
-                            < input name="deliveryInstruction" ref={register({ required: true })} placeholder="Add Delivery Instruction"/>
-                            {errors.deliveryInstruction && <span className="err">This field is required</span>} <br/>
+                            < input name="deliveryInstruction" onBlur={handleChange} ref={register({ required: true })} placeholder="Add Delivery Instruction" />
+                            {errors.deliveryInstruction && <span className="err">This field is required</span>} <br />
 
                             {/* <input type="submit" /> */}
-                            <button className="details-btn" onClick={onSubmit}>Submit</button>
+                            <button  className="details-btn" onClick={onSubmit}>Submit</button>
                         </form >
                     </div>
 
@@ -109,6 +139,8 @@ const ShowItemsCartReview = () => {
                             style={{ backgroundColor: "#F91944", border: "none" }}
                             className="btn-place-order btn btn-primary"
                             onClick={handlePlaceOrder}
+                            disabled={address.disabled}
+
                         >Place Order</button>
                     </Link>
                 </div>

@@ -1,4 +1,4 @@
-.nav-body{
+/* .nav-body{
     display: flex;
     margin-top: 10px;
 }
@@ -50,4 +50,36 @@
     border-bottom: 5px solid #F91944;
     border-radius: 3px;
     /* background-color: tomato; */
+
+.nav-body{
+    display: flex;
+    height: 50px;
+}
+.logo img{
+    width: 30%;
+}
+.banner{
+    background-color: #FCF4E0;
+    margin-top: 20px;
+
+}
+.banner img{
+    width: 100%;
+}
+.my-button{
+    margin-right: 8px;
+    font-size: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: none;
+    padding: 15px;
+    border-radius: 30px;
+    background: #F91944;
+}
+.p-root{
+    margin-left: 250px;
+}
+.cart-icon{
+    color: red;
+    font-size: 30px;
 }
