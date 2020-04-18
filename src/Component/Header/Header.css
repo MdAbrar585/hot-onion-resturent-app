@@ -1,62 +1,12 @@
-/* .nav-body{
-    display: flex;
-    margin-top: 10px;
-}
-.nav-body img{
-    width: 20%;
-}
-.icons{
-    margin-left: 295px;
-}
-.icons a{
-    
-    border-radius: 20px;
-    margin-left: 10px;
-    padding-top: 7px;
-    background-color: #F91944;
-    width: 80px;
-    height: 40px;
-    text-align: center;
-
-}
-.icons button{
-    margin-left:10px ;
-    border-radius: 20px;
-    background-color: #F91944;
-    margin-left: 20px;
-}
-.banner{
-    background-color: #FCF4E0;
-    margin-top: 20px;
-
-}
-.banner img{
-    width: 100%;
-}
-.food-area{
-    text-align: center;
-    background-color: white;
-    font-size: 20px;
-}
-.food-area a{
-    text-decoration: underline;
-    color: black;
-    all:unset;
-    margin-left: 5px;
-}
-.food-area a:hover{
-    text-decoration: none;
-    color: #F91944;
-    border-bottom: 5px solid #F91944;
-    border-radius: 3px;
-    /* background-color: tomato; */
-
 .nav-body{
     display: flex;
     height: 50px;
 }
 .logo img{
     width: 30%;
+    width: 23%;
+    margin-left: 50px;
+    margin-top: 10px;
 }
 .banner{
     background-color: #FCF4E0;
@@ -77,7 +27,7 @@
     background: #F91944;
 }
 .p-root{
-    margin-left: 250px;
+    margin-left: 200px;
 }
 .cart-icon{
     color: red;

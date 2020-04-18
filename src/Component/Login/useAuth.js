@@ -66,12 +66,7 @@ const getUser = user => {
 
 
 const Auth = () => {
-     const [user, setUser] = useState({
-    isSignedIn: false,
-    name: '',
-    email:'',
-    password: ''
-  })
+     const [user, setUser] = useState(null)
     const provider = new firebase.auth.GoogleAuthProvider();
 
     const handleChange = event =>{

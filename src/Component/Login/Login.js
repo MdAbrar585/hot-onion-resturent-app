@@ -36,9 +36,9 @@ const Login = () => {
                 <div className="login-form-body">
                     < form onSubmit={auth.createAccount}>
 
-                        < input onBlur={auth.handleChange} name="name" ref={register({ required: true })} placeholder="Name" />
+                        < input onBlur={auth.handleChange} name="name" ref={register({ required: true })} placeholder="Name" required/>
                         {errors.name && <span className="error">This field is required</span>}
-                        < input onBlur={auth.handleChange} name="email" ref={register({ required: true })} placeholder="Email" />
+                        < input onBlur={auth.handleChange} name="email" ref={register({ required: true })} placeholder="Email" required />
                         {errors.email && <span className="error">This field is required</span>}
                         {/* < input name="password" ref={register({ required: true })} placeholder="Password" />
                         {errors.password && <span className="error">This field is required</span>}
@@ -56,6 +56,7 @@ const Login = () => {
                                     message: "Password must have at least 8 characters"
                                 }
                             })}
+                            required
                         />
                         {errors.password && <p>{errors.password.message}</p>}
 
@@ -68,18 +69,19 @@ const Login = () => {
                                 validate: value =>
                                     value === password.current || "The passwords do not match"
                             })}
+                            required
                         />
                         {errors.password_repeat && <p>{errors.password_repeat.message}</p>}
 
                         {/* <button className="login-btn" onClick={onSubmit}>Login</button> */}
-                        <input className="google-login-btn" type="submit" value="SignUp" />
+                        <input style={{background:"#F91944"}}  type="submit" value="SignUp" />
                     </form >
                 </div>
 
-                {
-                    auth.user ? <button className="google-login-btn" onClick={handleLogin}>Sign In Google</button> : <button className="google-login-btn" onClick={handleLogOut}>Sign Out</button> 
+                {/* {
+                    auth.user ?  <button className="google-login-btn" onClick={handleLogOut}>Sign Out</button> :<button className="google-login-btn" onClick={handleLogin}>Sign In Google</button> 
                         
-                }
+                } */}
                 <p style={{ marginRight: "90px" }}><a href="/loginAccount">Already have an account?</a></p>
 
             </div>

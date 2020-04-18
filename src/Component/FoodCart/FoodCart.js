@@ -5,7 +5,7 @@ const FoodCart = (props) => {
     console.log(props);
     const { id, name, description, img, price } = props.food;
     return (
-
+      
         <Link style={{textDecoration:"none",color:"black"}} to={"/menuItems/"+id}>
             <div className="my-card">
                 <div className="row">
@@ -20,6 +20,7 @@ const FoodCart = (props) => {
                 </div>
             </div>
         </Link>
+       
     );
 };
 

@@ -9,6 +9,10 @@
     display: block; 
     margin-top: 10px;
     width: 50%;
+    background: #F5F5F5;
+    border:none;
+    padding: 5px;
+    border-radius: 5px;
 }
 .login-forms{
     margin-left: 450px;
@@ -24,4 +28,12 @@
 }
 .login-forms h1{
     margin-left: 145px;
+}
+.popup-btn{
+    margin-top: 10px;
+    width: 450px;
+    background: #F91944;
+    padding: 5px;
+    border: none;
+    border-radius: 8px;
 }

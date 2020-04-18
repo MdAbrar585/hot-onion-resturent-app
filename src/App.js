@@ -18,6 +18,8 @@ import { AuthContextProvider, PrivateRoute } from './Component/Login/useAuth';
 import LoginAccount from './Component/LoginAccount/LoginAccount';
 import About from './Component/About/About';
 import Footer from './Component/Footer/Footer';
+import Banner from './Component/Banner/Banner';
+
 
 
 
@@ -31,6 +33,7 @@ function App() {
           <Switch>
             <Route path="/items">
               <Header></Header>
+              <Banner></Banner>
               <Items></Items>
               <About></About>
               <Footer></Footer>
@@ -39,29 +42,36 @@ function App() {
           </Route> */}
             <Route path="/breakfast">
               <Header></Header>
+              <Banner></Banner>
               <Items></Items>
               <About></About>
               <Footer></Footer>
             </Route>
             <Route path="/lunch">
               <Header></Header>
+              <Banner></Banner>
               <Items></Items>
               <About></About>
               <Footer></Footer>
             </Route>
             <Route path="/dinner">
               <Header></Header>
+              <Banner></Banner>
               <Items></Items>
               <About></About>
             </Route>
+            
+
             <Route exact path="/">
               <Header></Header>
+              <Banner></Banner>
               <Items></Items>
               <About></About>
               <Footer></Footer>
             </Route>
             <Route path="/showItemsCarts">
-                <ShowItemsCartReview></ShowItemsCartReview>
+              <Header></Header>
+              <ShowItemsCartReview></ShowItemsCartReview>
               <Footer></Footer>
             </Route>
             <PrivateRoute path="/showItemsCart">
@@ -74,10 +84,12 @@ function App() {
               <Delivery></Delivery>
               <Footer></Footer>
             </Route>
-            <Route path="/login">
+            <Route path="/signUp">
+            <Header></Header>
               <Login></Login>
             </Route>
             <Route path="/loginAccount">
+            <Header></Header>
               <LoginAccount></LoginAccount>
             </Route>
             <Route path="/menuItems/:id">
@@ -85,7 +97,7 @@ function App() {
               <ItemReview></ItemReview>
               <Footer></Footer>
             </Route>
-            
+
             <Route path="*">
               <Error></Error>
             </Route>
