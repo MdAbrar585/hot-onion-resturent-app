@@ -1,20 +1,30 @@
 import React, { useState } from 'react';
-import fakeData from '../../fakeData';
-import breakfast from '../../fakeData/breakfast';
+
 import FoodCart from '../FoodCart/FoodCart';
 import './Items.css'
 import { useEffect } from 'react';
 
 
 const Items = () => {
-    // const foods = fakeData.slice(0, 18);
+   
 
-    const lunch = fakeData.filter(
+   
+    const [foods,setFoods] = useState([]);
+    const [category, setCategory] = useState([]);
+
+    useEffect(()=>{
+            fetch('http://localhost:4200/foodData')
+            .then(res=>res.json())
+            .then(data=>{
+                setFoods(data);
+            })
+    },[])
+
+    const lunch = foods.filter(
         x => x.category === "lunch"
     );
     const [defaults, setDefault] = useState(lunch);
 
-    const [category, setCategory] = useState([]);
 
     const [active, setActive] = useState(
         {
@@ -25,13 +35,13 @@ const Items = () => {
     )
 
     useEffect(() => {
-        const data = fakeData.filter(item => item.category === "lunch")
+        const data = foods.filter(item => item.category === "lunch")
         setCategory(data)
-    }, [setCategory, fakeData])
+    }, [setCategory, foods])
 
     const handleLunchButton = (category) => {
         console.log("clicked", category);
-        const lunches = fakeData.filter(
+        const lunches = foods.filter(
             x => x.category === "lunch"
         );
         let prev = active;
@@ -44,7 +54,7 @@ const Items = () => {
 
     const handleDinnerButton = (category) => {
         console.log("clicked");
-        const dinners = fakeData.filter(
+        const dinners = foods.filter(
             x => x.category === "dinner"
         );
         let prev = active;
@@ -57,7 +67,7 @@ const Items = () => {
 
     const handleBreakfastButton = (category) => {
         console.log("clicked", category);
-        const breakfasts = fakeData.filter(
+        const breakfasts = foods.filter(
             x => x.category === "breakfast"
         );
         let prev = active;

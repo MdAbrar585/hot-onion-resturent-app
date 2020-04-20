@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { getDatabaseCart, removeFromDatabaseCart } from '../../utilities/databaseManager';
-import fakeData from '../../fakeData';
 import ItemsCart from '../ItemsCart/ItemsCart';
 import FoodCart from '../FoodCart/FoodCart';
 import './ShowItemsCartReview.css'
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 const ShowItemsCartReview = () => {
+    const [foods,setFoods] = useState([]);
     const [foodCart, setFoodCart] = useState([]);
     const [address, setAddress] = useState({
         flat: "",
@@ -14,6 +14,15 @@ const ShowItemsCartReview = () => {
         delivery: "",
         disabled: true
     });
+
+    useEffect(()=>{
+        fetch('http://localhost:4200/foodData')
+        .then(res=>res.json())
+        .then(data=>{
+            console.log("data",data);
+            setFoods(data);
+        })
+},[])
     // const handleFlatChange = (evt) => {
     //     setAddress({ flat: evt.target.value });
     // }
@@ -46,15 +55,17 @@ const ShowItemsCartReview = () => {
     useEffect(() => {
         const saveFoodCart = getDatabaseCart();
         const foodId = Object.keys(saveFoodCart);
+       if(foods.length){
         const foodItem = foodId.map(id => {
-            const item = fakeData.find(fdId => fdId.id === id);
+            const item = foods.find(fdId => fdId.id === id);
             item.quantity = saveFoodCart[id];
             return item;
         });
         setFoodCart(foodItem);
         console.log(foodItem);
+       }
 
-    }, [])
+    }, [foods])
     let total = 0;
     let shippingCost = 0;
     let delivery = 0;

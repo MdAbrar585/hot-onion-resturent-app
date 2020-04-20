@@ -31,7 +31,7 @@ export const PrivateRoute = ({ children, ...rest }) => {
           ) : (
             <Redirect
               to={{
-                pathname: "/login",
+                pathname: "/loginAccount",
                 state: { from: location }
               }}
             />
@@ -51,18 +51,6 @@ const getUser = user => {
 }
 
 //*************Editing Start****************/
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 const Auth = () => {

@@ -19,6 +19,7 @@ import LoginAccount from './Component/LoginAccount/LoginAccount';
 import About from './Component/About/About';
 import Footer from './Component/Footer/Footer';
 import Banner from './Component/Banner/Banner';
+import AddData from './Component/AddData/AddData';
 
 
 
@@ -60,7 +61,9 @@ function App() {
               <Items></Items>
               <About></About>
             </Route>
-            
+            <Route path="/addData">
+              <AddData></AddData>
+            </Route>
 
             <Route exact path="/">
               <Header></Header>
@@ -74,11 +77,11 @@ function App() {
               <ShowItemsCartReview></ShowItemsCartReview>
               <Footer></Footer>
             </Route>
-            <PrivateRoute path="/showItemsCart">
+            {/* <PrivateRoute path="/showItemsCart">
               <Header></Header>
               <ShowItemsCartReview></ShowItemsCartReview>
               <Footer></Footer>
-            </PrivateRoute>
+            </PrivateRoute> */}
             <Route path="/delivery">
               <Header></Header>
               <Delivery></Delivery>
