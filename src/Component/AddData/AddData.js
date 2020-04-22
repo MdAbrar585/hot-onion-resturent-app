@@ -5,7 +5,7 @@ const AddData = () => {
     const add = () => {
             const foodData = fakeData[0];
             console.log(foodData);
-            fetch('http://localhost:4200/addData',{
+            fetch('https://hot-onion-585.herokuapp.com/addData',{
                 method: 'POST', // *GET, POST, PUT, DELETE, etc.
                 headers: {
                   'Content-Type': 'application/json'

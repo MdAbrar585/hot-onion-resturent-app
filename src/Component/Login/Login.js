@@ -11,9 +11,9 @@ const Login = () => {
     //*************************************************** */
     const handleLoginWithPopUp = () => {
         auth.signInWithGoogle()
-            .then(res => {
-                window.location.pathname = '/showItemsCarts';
-            })
+            // .then(res => {
+            //     window.location.pathname = '/showItemsCarts';
+            // })
     }
 
     const handleLogOut = () => {

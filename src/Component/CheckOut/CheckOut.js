@@ -72,7 +72,7 @@ const CheckOut = (props) => {
         },
       }}
       />
-      <button style={{padding:"10px",marginTop:"10px"}} className="btn btn-success" type="submit" disabled={!stripe}>
+      <button style={{padding:"10px",paddingLeft:"30px",paddingRight:"30px",marginTop:"10px"}} className="btn btn-success" type="submit" disabled={!stripe}>
         Pay
       </button>
       {

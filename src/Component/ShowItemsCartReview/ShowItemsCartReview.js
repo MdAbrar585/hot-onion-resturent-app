@@ -26,7 +26,7 @@ const ShowItemsCartReview = () => {
     const stripePromise = loadStripe('pk_test_VX7COehSNQtC4I6sU5jNXeRQ00r42EFsBl');
 
     useEffect(() => {
-        fetch('http://localhost:4200/foodData')
+        fetch('https://hot-onion-585.herokuapp.com/foodData')
             .then(res => res.json())
             .then(data => {
                 // console.log("data",data);
@@ -104,7 +104,7 @@ const ShowItemsCartReview = () => {
             shipment: shipInfoAdded,
             payment: payment
         };
-        fetch('http://localhost:4200/placeOrder', {
+        fetch('https://hot-onion-585.herokuapp.com/placeOrder', {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
             headers: {
                 'Content-Type': 'application/json'
@@ -152,10 +152,13 @@ const ShowItemsCartReview = () => {
                         </form >
                     </div>
                     <div style={{display: shipInfoAdded ? 'block': 'none' }} className="payment">
+                        <div className="container">
                         <h1>Shipment</h1>
                         <Elements stripe={stripePromise}>
                             <CheckOut handlePlaceOrders={handlePlaceOrders}></CheckOut>
                         </Elements>
+                        </div>
+                       
                         <br/>
                       {
                       orderSuccess && 

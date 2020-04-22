@@ -13,7 +13,7 @@ const Items = () => {
     const [category, setCategory] = useState([]);
 
     useEffect(()=>{
-            fetch('http://localhost:4200/foodData')
+            fetch('https://hot-onion-585.herokuapp.com/foodData')
             .then(res=>res.json())
             .then(data=>{
                 setFoods(data);

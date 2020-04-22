@@ -94,6 +94,7 @@ const Auth = () => {
             password: password
           }
           setUser(signedInUser);
+          window.location.pathname = '/'; 
           console.log(displayName, password, email);
         })
         .catch(err => {

@@ -61,7 +61,7 @@ const Footer = () => {
                     </ul>
                 </div>
                 <div className="footer-copyright text-center py-3">© 2020 Copyright:
-                         <a href="https://mdbootstrap.com/"> hotonion.com</a>
+                         <a href="/"> hotonion.com</a>
                 </div>
 
             </footer>
