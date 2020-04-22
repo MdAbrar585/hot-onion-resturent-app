@@ -15,7 +15,7 @@ import Error from './Error/Error';
 import ShowItemsCartReview from './Component/ShowItemsCartReview/ShowItemsCartReview';
 import Delivery from './Component/Delivery/Delivery';
 import { AuthContextProvider, PrivateRoute } from './Component/Login/useAuth';
-import LoginAccount from './Component/LoginAccount/LoginAccount';
+// import LoginAccount from './Component/LoginAccount/LoginAccount';
 import About from './Component/About/About';
 import Footer from './Component/Footer/Footer';
 import Banner from './Component/Banner/Banner';
@@ -72,11 +72,11 @@ function App() {
               <About></About>
               <Footer></Footer>
             </Route>
-            <Route path="/showItemsCarts">
+            <PrivateRoute path="/showItemsCarts">
               <Header></Header>
               <ShowItemsCartReview></ShowItemsCartReview>
               <Footer></Footer>
-            </Route>
+            </PrivateRoute>
             {/* <PrivateRoute path="/showItemsCart">
               <Header></Header>
               <ShowItemsCartReview></ShowItemsCartReview>
@@ -88,13 +88,13 @@ function App() {
               <Footer></Footer>
             </Route>
             <Route path="/signUp">
-            <Header></Header>
+            
               <Login></Login>
             </Route>
-            <Route path="/loginAccount">
+            {/* <Route path="/loginAccount">
             <Header></Header>
               <LoginAccount></LoginAccount>
-            </Route>
+            </Route> */}
             <Route path="/menuItems/:id">
               <Header></Header>
               <ItemReview></ItemReview>

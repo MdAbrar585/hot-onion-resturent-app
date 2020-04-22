@@ -3,25 +3,50 @@ import Auth from './useAuth';
 import './Login.css'
 import logo from '../../images/ICON/logo2.png'
 import { useForm } from 'react-hook-form';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
     const auth = Auth();
-    const handleLogin = () => {
+    //*************************************************** */
+    const handleLoginWithPopUp = () => {
         auth.signInWithGoogle()
             .then(res => {
                 window.location.pathname = '/showItemsCarts';
             })
     }
+
     const handleLogOut = () => {
         auth.signOut()
             
     }
 
-    console.log(auth);
+    //*************************************************** */
+    const [isSignedIn, setIsSignedIn] = useState(false);
+
+    const onSubmit = data => {
+        if (isSignedIn) {
+            if (data.email && data.password) {
+                auth.signIn(data.email, data.password);
+            }
+        } else {
+            if (data.name && data.email && data.password && data.confirm_password) {
+                auth.signUp(data.email, data.confirm_password, data.name)
+                
+            }
+        }
+
+    }
+
+
+
+
+    //*************************************************** */
+
 
     //*************************************************** */
     const { register, handleSubmit, watch, errors } = useForm();
-    const onSubmit = data => { console.log(data) }
+    // const onSubmit = data => { console.log(data) }
 
     console.log(watch('example')) // watch input value by passing the name of it
 
@@ -31,62 +56,71 @@ const Login = () => {
         <div className="body-login">
             <div className="login-form">
                 <div className="login-logo">
+                    <Link to="/">
                     <img src={logo} alt="" />
+                    </Link>
                 </div>
-                <div className="login-form-body">
-                    < form onSubmit={auth.createAccount}>
+                {
+                    isSignedIn ?
+                        <form onSubmit={handleSubmit(onSubmit)} className="py-5">
+                            {
+                                auth.user != null && <p className="text-danger">* {auth.user.error}</p>
+                            }
+                            <div className="form-group">
+                                <input name="email" className="form-control" ref={register({ required: true })} placeholder="Email" />
+                                {errors.email && <span className="error">Email is required</span>}
+                            </div>
+                            <div className="form-group">
+                                <input type="password" name="password" className="form-control" ref={register({ required: true })} placeholder="Password" />
+                                {errors.password && <span className="error">Password is required</span>}
+                            </div>
 
-                        < input onBlur={auth.handleChange} name="name" ref={register({ required: true })} placeholder="Name" required/>
-                        {errors.name && <span className="error">This field is required</span>}
-                        < input onBlur={auth.handleChange} name="email" ref={register({ required: true })} placeholder="Email" required />
-                        {errors.email && <span className="error">This field is required</span>}
-                        {/* < input name="password" ref={register({ required: true })} placeholder="Password" />
-                        {errors.password && <span className="error">This field is required</span>}
-                        < input name="confirmPassword" ref={register({ required: true })} placeholder="Confirm Password"/>
-                        {errors.confirmPassword && <span className="error">This field is required</span>} <br/> */}
+                            <div className="form-group">
+                                <button  style={{marginLeft:"0px"}} className="btn btn-danger btn-block" type="submit">Sign In</button>
+                            </div>
+                            <div className="form-group">
+                                {
+                                    auth.user ? <button  style={{marginLeft:"0px"}} className="btn btn-danger btn-block" onClick={handleLogOut}>Sign Out</button> : <button  style={{marginLeft:"0px"}} className="btn btn-success btn-block" onClick={handleLoginWithPopUp}>Sign In Google</button>
 
-                        <input onBlur={auth.handleChange}
-                            name="password"
-                            type="password"
-                            placeholder="password"
-                            ref={register({
-                                required: "You must specify a password",
-                                minLength: {
-                                    value: 8,
-                                    message: "Password must have at least 8 characters"
                                 }
-                            })}
-                            required
-                        />
-                        {errors.password && <p>{errors.password.message}</p>}
+                            </div>
+                            <div className="option text-center">
+                                <label onClick={() => setIsSignedIn(false)}>Create a new Account</label>
+                            </div>
+                        </form>
+                        :
+                        <form onSubmit={handleSubmit(onSubmit)} className="py-5">
+                            {
+                                auth.user != null && <p className="text-danger">* {auth.user.error}</p>
+                            }
+                            <div className="form-group">
+                                <input name="name" className="form-control" ref={register({ required: true })} placeholder="Name" />
+                                {errors.name && <span className="error">Name is required</span>}
+                            </div>
+                            <div className="form-group">
+                                <input name="email" className="form-control" ref={register({ required: true })} placeholder="Email" />
+                                {errors.email && <span className="error">Email is required</span>}
+                            </div>
+                            <div className="form-group">
+                                <input type="password" name="password" className="form-control" ref={register({ required: true })} placeholder="Password" />
+                                {errors.password && <span className="error">Password is required</span>}
+                            </div>
+                            <div className="form-group">
+                                <input type="password" name="confirm_password" className="form-control" ref={register({
+                                    validate: (value) => value === watch('password')
+                                })} placeholder="Confirm Password" />
+                                {errors.confirm_password && <span className="error">Passwords don't match.</span>}
+                            </div>
+                            <div className="form-group">
+                                <button style={{marginLeft:"0px"}} className="btn btn-danger btn-block btn-custom" type="submit">Sign Up</button>
+                            </div>
+                            <div className="option text-center">
+                                <label onClick={() => setIsSignedIn(true)}>Already Have an Account</label>
+                            </div>
+                        </form>
 
-
-                        <input
-                            name="password_repeat"
-                            type="password"
-                            placeholder="confirm password"
-                            ref={register({
-                                validate: value =>
-                                    value === password.current || "The passwords do not match"
-                            })}
-                            required
-                        />
-                        {errors.password_repeat && <p>{errors.password_repeat.message}</p>}
-
-                        {/* <button className="login-btn" onClick={onSubmit}>Login</button> */}
-                        <input style={{background:"#F91944"}}  type="submit" value="SignUp" />
-                    </form >
-                </div>
-
-                {/* {
-                    auth.user ?  <button className="google-login-btn" onClick={handleLogOut}>Sign Out</button> :<button className="google-login-btn" onClick={handleLogin}>Sign In Google</button> 
-                        
-                } */}
-                <p style={{ marginRight: "90px" }}><a href="/loginAccount">Already have an account?</a></p>
-
+                }
             </div>
-
-  )
         </div>
         //*************************************************** */
 

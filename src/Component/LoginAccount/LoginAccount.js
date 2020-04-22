@@ -7,14 +7,10 @@ import Auth from '../Login/useAuth';
 
 const LoginAccount = () => {
     const auth = Auth();
+
     const { register, handleSubmit, watch, errors } = useForm();
 
-    const handleLogin = () => {
-        auth.signInUser()
-            .then(res => {
-                window.location.pathname = '/showItemsCarts';
-            })
-    }
+
 
     const handleLoginWithPopUp = () => {
         auth.signInWithGoogle()
@@ -23,8 +19,7 @@ const LoginAccount = () => {
             })
     }
     const handleLogOut = () => {
-        auth.signOut()
-            
+        auth.signOut()      
     }
 
     return (

@@ -31,7 +31,7 @@ const Header = () => {
                    </div>
                    <div className="p-2">
                    {
-                        auth.user ? <Link to="/loginAccount"> <button className="my-button" onClick={auth.signOut}>SignOut</button> </Link>: <a  className="my-button" href="/loginAccount">Login</a> 
+                        auth.user ? <Link to="/signUp"> <button className="my-button" onClick={auth.signOut}>SignOut</button> </Link>: <a  className="my-button" href="/signUp">Login</a> 
                         
                     }
                    <Link to="/signUp"> <button className="my-button">SignUp</button></Link>

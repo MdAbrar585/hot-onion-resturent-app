@@ -5,8 +5,13 @@ import FoodCart from '../FoodCart/FoodCart';
 import './ShowItemsCartReview.css'
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { useAuth } from '../Login/useAuth';
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
+import CheckOut from '../CheckOut/CheckOut';
+
 const ShowItemsCartReview = () => {
-    const [foods,setFoods] = useState([]);
+    const [foods, setFoods] = useState([]);
     const [foodCart, setFoodCart] = useState([]);
     const [address, setAddress] = useState({
         flat: "",
@@ -15,38 +20,31 @@ const ShowItemsCartReview = () => {
         disabled: true
     });
 
-    useEffect(()=>{
-        fetch('http://localhost:4200/foodData')
-        .then(res=>res.json())
-        .then(data=>{
-            console.log("data",data);
-            setFoods(data);
-        })
-},[])
-    // const handleFlatChange = (evt) => {
-    //     setAddress({ flat: evt.target.value });
-    // }
+    const [shipInfoAdded,setShipInfoAdded] = useState(null);
+    const [orderSuccess,setOrderSuccess] = useState(null);
 
-    // const handleBusinessChange = (evt) => {
-    //     setAddress({ business: evt.target.value });
-    // }
-    // const handleDeliveryChange = (evt) => {
-    //     setAddress({ delivery: evt.target.value });
-    // }
+    const stripePromise = loadStripe('pk_test_VX7COehSNQtC4I6sU5jNXeRQ00r42EFsBl');
+
+    useEffect(() => {
+        fetch('http://localhost:4200/foodData')
+            .then(res => res.json())
+            .then(data => {
+                // console.log("data",data);
+                setFoods(data);
+            })
+    }, [])
+   
 
     const handleChange = event => {
-        // console.log(event.target.name,event.target.value);
         const newUserInfo = {
             ...address,
             disabled: false
         };
         newUserInfo[event.target.name] = event.target.value;
-        console.log(newUserInfo);
-        // setUser(newUserInfo);
+     
         setAddress(newUserInfo);
     }
 
-    // console.log(foodCart.length);
     const handleRemoveItem = (itemsId) => {
         const newFoodItem = foodCart.filter(fdId => fdId.id !== itemsId);
         setFoodCart(newFoodItem);
@@ -55,15 +53,15 @@ const ShowItemsCartReview = () => {
     useEffect(() => {
         const saveFoodCart = getDatabaseCart();
         const foodId = Object.keys(saveFoodCart);
-       if(foods.length){
-        const foodItem = foodId.map(id => {
-            const item = foods.find(fdId => fdId.id === id);
-            item.quantity = saveFoodCart[id];
-            return item;
-        });
-        setFoodCart(foodItem);
-        console.log(foodItem);
-       }
+        if (foods.length) {
+            const foodItem = foodId.map(id => {
+                const item = foods.find(fdId => fdId.id === id);
+                item.quantity = saveFoodCart[id];
+                return item;
+            });
+            setFoodCart(foodItem);
+            // console.log(foodItem);
+        }
 
     }, [foods])
     let total = 0;
@@ -85,17 +83,43 @@ const ShowItemsCartReview = () => {
 
 
     const handlePlaceOrder = () => {
-        console.log("clicked");
+        // console.log("clicked");
     }
+
+
 
     //**************************************************** */
     const { register, handleSubmit, watch, errors } = useForm();
-    const onSubmit = data => { console.log(data) }
+    const auth = useAuth();
+    const onSubmit = data => {
+        setShipInfoAdded(data);
+    }
 
-    console.log(watch('example')) // watch input value by passing the name of it
-    //**************************************************** */
-
-    // const enable = address.business.length>0 && address.delivery.length>0;
+    const handlePlaceOrders = (payment) => {
+        console.log(auth.user.name);
+        // const saveCart = getDatabaseCart();
+        const orderDetails = {
+            email: auth.user.email,
+            name: auth.user.name,
+            shipment: shipInfoAdded,
+            payment: payment
+        };
+        fetch('http://localhost:4200/placeOrder', {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            headers: {
+                'Content-Type': 'application/json'
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: JSON.stringify(orderDetails) // body data type must match "Content-Type" header
+        })
+            .then(res => res.json())
+            .then(order => {
+                setOrderSuccess(order._id);
+                // console.log("Order placed", order);
+                // alert("Successfully placed your order your order id is:" + order._id);
+                //clear cart
+            })
+    }
     return (
         <div>
             <nav className="d-flex justify-content-center menu-list">
@@ -105,7 +129,7 @@ const ShowItemsCartReview = () => {
             </nav>
             <div className="items-cart-body">
                 <div className="form">
-                    <div className="form-body">
+                    <div style={{display: shipInfoAdded && 'none'}} className="form-body">
                         <h6>Edit Delivery Details</h6><hr className="hr" />
                         < form onSubmit={handleSubmit(onSubmit)} >
                             < input defaultValue="Delivery to door" name="deliveryDoor" ref={register({ required: true })} />
@@ -124,8 +148,22 @@ const ShowItemsCartReview = () => {
                             {errors.deliveryInstruction && <span className="err">This field is required</span>} <br />
 
                             {/* <input type="submit" /> */}
-                            <button  className="details-btn" onClick={onSubmit}>Submit</button>
+                            <button className="details-btn" type="submit">Submit</button>
                         </form >
+                    </div>
+                    <div style={{display: shipInfoAdded ? 'block': 'none' }} className="payment">
+                        <h1>Shipment</h1>
+                        <Elements stripe={stripePromise}>
+                            <CheckOut handlePlaceOrders={handlePlaceOrders}></CheckOut>
+                        </Elements>
+                        <br/>
+                      {
+                      orderSuccess && 
+                       <div>
+                            <h1>Thankyou For Shopping</h1>
+                      <p>Your order id is {orderSuccess}</p>
+                      <p>Click to PlaceOrder to placed your order </p>
+                        </div>}
                     </div>
 
                 </div>
@@ -150,7 +188,8 @@ const ShowItemsCartReview = () => {
                             style={{ backgroundColor: "#F91944", border: "none" }}
                             className="btn-place-order btn btn-primary"
                             onClick={handlePlaceOrder}
-                            disabled={address.disabled}
+                            // disabled={address.disabled}
+                            disabled={!shipInfoAdded}
 
                         >Place Order</button>
                     </Link>

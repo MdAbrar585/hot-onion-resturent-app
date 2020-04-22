@@ -89,22 +89,10 @@ const Items = () => {
 
 
             <div className="d-flex justify-content-center food-menu">
-                {/* <button onClick={() => handleBreakfastButton(category)}>Breakfast</button> */}
                 <span className={breakfastActive ? 'active' : 'btn'} onClick={() => handleBreakfastButton(category)}>Breakfast</span>
                 <span className={lunchActive ? 'active' : 'btn'} onClick={() => handleLunchButton(category)}>Lunch</span>
                 <span className={dinnerActive ? 'active' : 'btn'} onClick={() => handleDinnerButton(category)}>Dinner</span>
             </div>
-            {/* <div>
-                <div className="hover-row row">
-                    {
-                        defaults.map(food =>
-                            <div className="cart-style col-md-4">
-                                <FoodCart food={food}></FoodCart>
-                            </div>
-                        )
-                    }
-                </div>
-            </div> */}
 
             <div className="hover-row row">
                 {
