@@ -9,7 +9,8 @@ This application is based on online food order service.Users can order food by c
 5. CSS 
 6. Firebase
 6. MongoDB.
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+###### This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
