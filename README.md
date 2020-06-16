@@ -1,4 +1,16 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Hot Onion Restaurant App
+### Description
+This application is based on online food order service.Users can order food by category like breakfast, lunch and dinner. Users also create an account and also login to his account for order food. Use stripe payment method for successfully ordered their foods. 
+### Tecnology
+1. React.js 
+2. Node.js 
+3. Stripe, HTML 
+4. Bootstrap 
+5. CSS 
+6. Firebase
+6. MongoDB.
+
+###### This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
