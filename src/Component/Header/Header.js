@@ -14,34 +14,36 @@ const Header = () => {
     console.log(auth);
     return (
         <div>
-            <nav className="nav-body">
-                <div className="logo">
-                    <a href="/"><img src={logo} alt="" /></a>
-                </div>
-                <div className="p-root d-flex flex-row">
-                   <div className="p-2">
-                   <p className="cart-icon"><FontAwesomeIcon icon={faShoppingCart} /></p>
-                   </div>
-                   <div className="p-2">
-                   {
-                        auth.user && <span>Welcome <br/> {auth.user.name}</span> 
-                       
-                        // <button className="btn btn-info">Login</button>
-                    }
-                   </div>
-                   <div className="p-2">
-                   {
-                        auth.user ? <Link to="/signUp"> <button className="my-button" onClick={auth.signOut}>SignOut</button> </Link>: <a  className="my-button" href="/signUp">Login</a> 
-                        
-                    }
-                   <Link to="/signUp"> <button className="my-button">SignUp</button></Link>
-                       </div>
-                    {/* <a href="/">Login</a>
-                    <a href="/">Sign Up</a> */}
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a class="navbar-brand logo" href="/"><img src={logo} alt="" /></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/"> <p className="cart-icon"><FontAwesomeIcon icon={faShoppingCart} /></p> <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/"> {
+                                auth.user && <span>Welcome <br /> {auth.user.name}</span>
 
+                                // <button className="btn btn-info">Login</button>
+                            }</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">{
+                                auth.user ? <Link to="/signUp"> <button className="my-button" onClick={auth.signOut}>SignOut</button> </Link> : <a className="my-button" href="/signUp">Login</a>
+
+                            }
+                                <Link to="/signUp"> <button className="signup-button">SignUp</button></Link></a>
+                        </li>
+
+                    </ul>
                 </div>
             </nav>
-            
+
+
             {/* <nav>
                 <a href="/breakfast">Breakfast</a>
                 <a href="/lunch">Lunch</a>
