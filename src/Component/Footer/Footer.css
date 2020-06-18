@@ -1,6 +1,10 @@
 .page-footer{
     background: #191919;
-    height: 200px;
+    margin-top: 20px;
+    
+}
+.footer-brand{
+    color: #E91948;
 }
 .btn-outline{
     color: white;
@@ -24,4 +28,16 @@
 .list-unstyled a:hover{
     text-decoration: none;
     color: teal;
+}
+
+
+@media(max-width: 500px){
+    .footer-brand{
+        color: #E91948;
+        font-size: 16px;
+    }
+    .page-footer img{
+        width: 50% !important;
+        margin-bottom: 10px !important;
+    }
 }

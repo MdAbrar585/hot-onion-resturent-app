@@ -30,3 +30,17 @@
     border-radius: 20px;
     background: #F91944;
 }
+@media(max-width: 500px){
+  .banner-body {
+    padding: 20px 0;
+}
+.banner-body h2{
+  font-size: 28px;
+}
+.banner {
+
+  height: 300px;
+  background-position: center center; 
+  background-size: cover;
+}
+}

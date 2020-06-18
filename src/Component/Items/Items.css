@@ -39,3 +39,14 @@
   .btn:hover {
     color: #da0839;
 }
+
+@media(max-width: 500px){
+    .check-buttn {
+        margin-left: 40px;
+        border: none;
+        background: #CECECE;
+        padding: 10px 20px;
+        border-radius: 8px;
+        color: white;
+    }
+}

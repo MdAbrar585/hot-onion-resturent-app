@@ -37,8 +37,8 @@ const ItemReview = () => {
                 <a href="/lunch">Lunch</a>
                 <a href="/dinner">Dinner</a>
             </nav>
-            <div className="dinner">
-                <div className="dinner-details">
+            <div className="row">
+                <div className="col-md-6 dinner-details">
                     <h1>{foodItem && foodItem.name}</h1>
                     <h6>{foodItem && foodItem.description}</h6>
                     <div className="price-button">
@@ -61,7 +61,7 @@ const ItemReview = () => {
                     </Link>
                     {/* <ItemsCart itemCart={itemCart}></ItemsCart> */}
                 </div>
-                <div className="dinner-image">
+                <div className="col-md-6 check-img">
                     <img style={{ width: "70%" }} src={foodItem && foodItem.img} alt="" />
                 </div>
                 {/* <Dinner dinnerFood={dinner}></Dinner> */}

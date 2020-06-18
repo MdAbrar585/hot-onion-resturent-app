@@ -10,7 +10,7 @@ const Footer = () => {
                         <div className="col-md-6 mt-md-0 mt-3">
 
                            <img style={{width:"30%"}} src={footerLogo} alt=""/>
-                            <p style={{color:"#E91948"}}>A luxurious food restaurant for your perfect choice</p>
+                            <p  className="footer-brand" >A luxurious food restaurant for your perfect choice</p>
 
                         </div>
                         <div className="col-md-3 mb-md-0 mb-3">

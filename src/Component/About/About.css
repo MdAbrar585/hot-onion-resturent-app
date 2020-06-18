@@ -12,6 +12,26 @@
 .logo-about{
     width: 150px;
 }
+.about-text{
+    margin-bottom: 20px;
+}
+.about-text p{
+    margin: 0;
+}
 .text p{
     margin:1px;
+}
+@media(max-width: 500px){
+    .about-text{
+        margin-bottom: 20px;
+    }
+    .about-text h1{
+        font-size: 30px;
+    }
+    .about-text p{
+        margin: 0;
+    }
+    .about-col{
+        margin-bottom: 20px;
+    }
 }

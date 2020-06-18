@@ -17,8 +17,8 @@
     display: flex;
 }
 .dinner-details{
-    margin-top: 200px;
-    margin-left: 215px;
+    padding-top: 130px;
+    padding-left: 170px !important;
 }
 .dinner-image{
     text-align: center;
@@ -47,4 +47,15 @@
 }
 .price-button{
     display: flex;
+}
+
+@media(max-width: 500px){
+    .dinner-details{
+        padding-top: 45px;
+        padding-left: 44px !important;
+    }
+    .check-img{
+        width: 100%;
+        padding: 27px 30px;
+    }
 }
